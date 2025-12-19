@@ -2,3 +2,6 @@
 *.log
 node_modules/
 vendor/
+
+setup-git.ps1
+setup-git.sh

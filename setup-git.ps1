@@ -24,10 +24,15 @@ if (-not (Test-Path "README.md")) {
     Write-Host "[ OK ] README.md dibuat." -ForegroundColor Green
 }
 
-# 4. Buat .gitignore standar
+# 4. Buat .gitignore (DAN SEMBUNYIKAN SCRIPT INI)
+# Perhatikan bagian ini: kita tambahkan setup-git.ps1 ke dalam list
 if (-not (Test-Path ".gitignore")) {
-    ".vscode/`n*.log`nnode_modules/`nvendor/" | Out-File ".gitignore" -Encoding utf8
-    Write-Host "[ OK ] .gitignore dibuat." -ForegroundColor Green
+    ".vscode/`n*.log`nnode_modules/`nvendor/`nsetup-git.ps1`nsetup-git.sh" | Out-File ".gitignore" -Encoding utf8
+    Write-Host "[ OK ] .gitignore dibuat (Script ini tidak akan ikut di-upload)." -ForegroundColor Green
+} else {
+    # Kalau .gitignore sudah ada, kita tambahkan nama script ini ke baris paling bawah
+    Add-Content -Path ".gitignore" -Value "`nsetup-git.ps1`nsetup-git.sh"
+    Write-Host "[ OK ] .gitignore diperbarui (Script ini disembunyikan)." -ForegroundColor Green
 }
 
 # 5. Eksekusi Perintah Git
